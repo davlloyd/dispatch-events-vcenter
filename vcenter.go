@@ -121,7 +121,8 @@ func (d *vCenterDriver) processEvent(e types.BaseEvent) (*events.CloudEvent, err
 
 	ve := &vCenterEvent{
 		Time:     e.GetEvent().CreatedTime,
-		Category: cat,
+		//Category: cat,
+		Category: "blah",
 		Message:  strings.TrimSpace(e.GetEvent().FullFormattedMessage),
 	}
 
