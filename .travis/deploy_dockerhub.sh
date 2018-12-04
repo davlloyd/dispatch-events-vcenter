@@ -1,5 +1,5 @@
 #!/bin/sh
-docker login -e $DOCKER_EMAIL -u $DOCKER_ACCOUNT -p $DOCKER_PASSWORD
+docker login -u $DOCKER_ACCOUNT -p $DOCKER_PASSWORD
 if [ "$TRAVIS_BRANCH" = "master" ]; then
     TAG="latest"
 else
