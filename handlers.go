@@ -20,6 +20,10 @@ func processEventMetadata(e types.BaseEvent) interface{} {
 		return handleVMBeingDeployedEvent(concreteEvent)
 	case *types.VmDeployedEvent:
 		return handleVMDeployedEvent(concreteEvent)
+	case *types.VmPoweredOnEvent:
+		return handleVMPoweredOnEvent(concreteEvent)
+	case *types.VmPoweredOffEvent:
+		return handleVMPoweredOffEvent(concreteEvent)
 	case *types.VmEvent:
 		return handleVMEvent(concreteEvent)
 	default:
@@ -66,6 +70,30 @@ func handleVMDeployedEvent(e *types.VmDeployedEvent) interface{} {
 }
 
 func handleVMEvent(e *types.VmEvent) interface{} {
+	return struct {
+		VMName     string `json:"vm_name"`
+		VMID       string `json:"vm_id"`
+		IsTemplate bool   `json:"is_template"`
+	}{
+		VMName:     e.Vm.Name,
+		VMID:       e.Vm.Vm.String(),
+		IsTemplate: e.Template,
+	}
+}
+
+func handleVMPoweredOnEvent(e *types.VmEvent) interface{} {
+	return struct {
+		VMName     string `json:"vm_name"`
+		VMID       string `json:"vm_id"`
+		IsTemplate bool   `json:"is_template"`
+	}{
+		VMName:     e.Vm.Name,
+		VMID:       e.Vm.Vm.String(),
+		IsTemplate: e.Template,
+	}
+}
+
+func handleVMPoweredOffEvent(e *types.VmEvent) interface{} {
 	return struct {
 		VMName     string `json:"vm_name"`
 		VMID       string `json:"vm_id"`
