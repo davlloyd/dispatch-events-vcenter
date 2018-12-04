@@ -3,6 +3,9 @@ sudo: required
 services:
   - docker
 
+notifications:
+  slack: vmware:wTHx2L1YE6Rg1tVw4zaUe2TV
+
 env:
   global:
     - IMAGE_NAME=davlloyd/dispatch-events-vcenter
