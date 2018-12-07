@@ -100,7 +100,7 @@ func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 	}
 }
 
-func handleUnknownEvent(string eventtype) interface{} {
+func handleUnknownEvent(eventtype string) interface{} {
 	return struct {
 		EventType	string `json:"eventtype"`
 		Comment    	string `json:"comment"`
