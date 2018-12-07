@@ -73,15 +73,13 @@ func handleVMEvent(e *types.VmEvent) interface{} {
 	return struct {
 		VMName     string `json:"vm_name"`
 		VMID       string `json:"vm_id"`
-		IsTemplate bool   `json:"is_template"`
 	}{
 		VMName:     e.Vm.Name,
-		VMID:       e.Vm.Vm.String(),
-		IsTemplate: e.Template,
+		VMID:       e.Vm.Vm.String()
 	}
 }
 
-func handleVMPoweredOnEvent(e *types.VmEvent) interface{} {
+func handleVMPoweredOnEvent(e *types.VmPoweredOnEvent) interface{} {
 	return struct {
 		VMName     string `json:"vm_name"`
 		VMID       string `json:"vm_id"`
@@ -91,7 +89,7 @@ func handleVMPoweredOnEvent(e *types.VmEvent) interface{} {
 	}
 }
 
-func handleVMPoweredOffEvent(e *types.VmEvent) interface{} {
+func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 	return struct {
 		VMName     string `json:"vm_name"`
 		VMID       string `json:"vm_id"`
