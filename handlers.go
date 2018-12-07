@@ -7,7 +7,7 @@ package main
 
 import (
 	"github.com/vmware/govmomi/vim25/types"
-	"fmt"
+	"reflect"
 )
 
 // NO TESTS
@@ -28,7 +28,7 @@ func processEventMetadata(e types.BaseEvent) interface{} {
 	case *types.VmEvent:
 		return handleVMEvent(concreteEvent)
 	default:
-		return handleUnknownEvent(e.(type).String())
+		return handleUnknownEvent(reflect.TypeOf(e))
 	}
 }
 
