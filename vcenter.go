@@ -112,6 +112,7 @@ func (d *vCenterDriver) handler(events chan *events.CloudEvent, multiple bool) f
 }
 
 func (d *vCenterDriver) processEvent(e types.BaseEvent) (*events.CloudEvent, error) {
+	log.Printf("%s",e)
 	eventType := reflect.TypeOf(e).Elem().Name()
 
 	cat, err := d.manager.EventCategory(context.Background(), e)
@@ -121,8 +122,7 @@ func (d *vCenterDriver) processEvent(e types.BaseEvent) (*events.CloudEvent, err
 
 	ve := &vCenterEvent{
 		Time:     e.GetEvent().CreatedTime,
-		//Category: cat,
-		Category: "blah",
+		Category: cat,
 		Message:  strings.TrimSpace(e.GetEvent().FullFormattedMessage),
 	}
 
@@ -133,7 +133,8 @@ func (d *vCenterDriver) processEvent(e types.BaseEvent) (*events.CloudEvent, err
 			ve.Message = fmt.Sprintf("%s (target=%s %s)", ve.Message, t.Info.Entity.Type, t.Info.EntityName)
 		}
 	}
-	ve.Metadata = processEventMetadata(e)
+	//ve.Metadata = processEventMetadata(e)
+	ve.Metadata = "testvalue"
 
 	topic := convertToTopic(eventType)
 
