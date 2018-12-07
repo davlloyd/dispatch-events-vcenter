@@ -112,7 +112,7 @@ func (d *vCenterDriver) handler(events chan *events.CloudEvent, multiple bool) f
 }
 
 func (d *vCenterDriver) processEvent(e types.BaseEvent) (*events.CloudEvent, error) {
-	log.Printf("%s",e)
+	//log.Printf("%s",e)
 	eventType := reflect.TypeOf(e).Elem().Name()
 
 	cat, err := d.manager.EventCategory(context.Background(), e)
