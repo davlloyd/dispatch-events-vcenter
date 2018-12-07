@@ -101,10 +101,14 @@ func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 
 func handleUnknownEvent(e *types.VmEvent) interface{} {
 	return struct {
+		VMName     string `json:"vm_name"`
+		VMID       string `json:"vm_id"`
 		Comment    string `json:"comment"`
 		Dump       string `json:"dump"`
 	}{
+		VMName:     e.Vm.Name,
+		VMID:       e.Vm.Vm.String(),
 		Comment:    "Event Type not declared",
-		Dump:       e.String(),
+		Dump:       fmt.Sprintf("%v", e),
 	}
 }
