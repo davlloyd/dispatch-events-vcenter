@@ -7,6 +7,7 @@ package main
 
 import (
 	"github.com/vmware/govmomi/vim25/types"
+	"fmt"
 )
 
 // NO TESTS
