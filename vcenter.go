@@ -133,8 +133,7 @@ func (d *vCenterDriver) processEvent(e types.BaseEvent) (*events.CloudEvent, err
 			ve.Message = fmt.Sprintf("%s (target=%s %s)", ve.Message, t.Info.Entity.Type, t.Info.EntityName)
 		}
 	}
-	//ve.Metadata = processEventMetadata(e)
-	ve.Metadata = "testvalue"
+	ve.Metadata = processEventMetadata(e)
 
 	topic := convertToTopic(eventType)
 
