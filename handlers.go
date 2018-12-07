@@ -28,7 +28,7 @@ func processEventMetadata(e types.BaseEvent) interface{} {
 	case *types.VmEvent:
 		return handleVMEvent(concreteEvent)
 	default:
-		return handleUnknownEvent(e)
+		return handleUnknownEvent(e.(type).String())
 	}
 }
 
@@ -92,24 +92,20 @@ func handleVMPoweredOnEvent(e *types.VmPoweredOnEvent) interface{} {
 
 func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 	return struct {
-		VMName     string `json:"vm_name"`
-		VMID       string `json:"vm_id"`
+		VMName     	string `json:"vm_name"`
+		VMID		string `json:"vm_id"`
 	}{
 		VMName:     e.Vm.Name,
 		VMID:       e.Vm.Vm.String(),
 	}
 }
 
-func handleUnknownEvent(e *types.BaseEvent) interface{} {
+func handleUnknownEvent(string eventtype) interface{} {
 	return struct {
-		VMName     string `json:"vm_name"`
-		VMID       string `json:"vm_id"`
-		Comment    string `json:"comment"`
-		Dump       string `json:"dump"`
+		EventType	string `json:"eventtype"`
+		Comment    	string `json:"comment"`
 	}{
-		VMName:     e.Vm.Name,
-		VMID:       e.Vm.Vm.String(),
+		EventType:  eventtype,
 		Comment:    "Event Type not declared",
-		Dump:       fmt.Sprintf("%v", e),
 	}
 }
