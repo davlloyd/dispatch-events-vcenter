@@ -75,7 +75,7 @@ func handleVMEvent(e *types.VmEvent) interface{} {
 		VMID       string `json:"vm_id"`
 	}{
 		VMName:     e.Vm.Name,
-		VMID:       e.Vm.Vm.String()
+		VMID:       e.Vm.Vm.String(),
 	}
 }
 
@@ -85,7 +85,7 @@ func handleVMPoweredOnEvent(e *types.VmPoweredOnEvent) interface{} {
 		VMID       string `json:"vm_id"`
 	}{
 		VMName:     e.Vm.Name,
-		VMID:       e.Vm.Vm.String()
+		VMID:       e.Vm.Vm.String(),
 	}
 }
 
@@ -95,7 +95,7 @@ func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 		VMID       string `json:"vm_id"`
 	}{
 		VMName:     e.Vm.Name,
-		VMID:       e.Vm.Vm.String()
+		VMID:       e.Vm.Vm.String(),
 	}
 }
 
@@ -105,6 +105,6 @@ func handleUnknownEvent(e *types.VmEvent) interface{} {
 		Data       string `json:"data"`
 	}{
 		Comment:    "Event Type not declared",
-		Data:       e.String()
+		Data:       e.String(),
 	}
 }
