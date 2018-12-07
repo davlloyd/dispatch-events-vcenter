@@ -100,7 +100,7 @@ func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 	}
 }
 
-func handleUnknownEvent(e *types.VmEvent) interface{} {
+func handleUnknownEvent(e *types.BaseEvent) interface{} {
 	return struct {
 		VMName     string `json:"vm_name"`
 		VMID       string `json:"vm_id"`
