@@ -28,7 +28,7 @@ func processEventMetadata(e types.BaseEvent) interface{} {
 	case *types.VmEvent:
 		return handleVMEvent(concreteEvent)
 	default:
-		return handleUnknownEvent(concreteEvent)
+		return handleUnknownEvent(e)
 	}
 }
 
