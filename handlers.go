@@ -143,7 +143,7 @@ func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 // Failure Events
 
 
-func handleVMFailedToPowerOffEvent(e *types.VmPoweredOffEvent) interface{} {
+func handleVMFailedToPowerOffEvent(e *types.VmFailedToPowerOffEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
@@ -153,7 +153,7 @@ func handleVMFailedToPowerOffEvent(e *types.VmPoweredOffEvent) interface{} {
 	}
 }
 
-func handleVMFailedToPowerOnEvent(e *types.VmPoweredOffEvent) interface{} {
+func handleVMFailedToPowerOnEvent(e *types.VmFailedToPowerOnEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
@@ -162,7 +162,7 @@ func handleVMFailedToPowerOnEvent(e *types.VmPoweredOffEvent) interface{} {
 		VMID:       e.Vm.Vm.String(),
 	}
 }
-func handleVMFailedToRebootGuestEvent(e *types.VmPoweredOffEvent) interface{} {
+func handleVMFailedToRebootGuestEvent(e *types.VmFailedToRebootGuestEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
@@ -172,7 +172,7 @@ func handleVMFailedToRebootGuestEvent(e *types.VmPoweredOffEvent) interface{} {
 	}
 }
 
-func handleVMFailedToResetEvent(e *types.VmPoweredOffEvent) interface{} {
+func handleVMFailedToResetEvent(e *types.VmFailedToResetEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
@@ -192,7 +192,7 @@ func handleVMFailedToSuspendEvent(e *types.VmPoweredOffEvent) interface{} {
 	}
 }
 
-func handleVMFailedToShutdownGuestEvent(e *types.VmPoweredOffEvent) interface{} {
+func handleVMFailedToShutdownGuestEvent(e *types.VmFailedToShutdownGuestEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
@@ -202,7 +202,7 @@ func handleVMFailedToShutdownGuestEvent(e *types.VmPoweredOffEvent) interface{} 
 	}
 }
 
-func handleVMFailedToStandbyGuestEvent(e *types.VmPoweredOffEvent) interface{} {
+func handleVMFailedToStandbyGuestEvent(e *types.VmFailedToStandbyGuestEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
