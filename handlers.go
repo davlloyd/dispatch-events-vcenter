@@ -100,7 +100,7 @@ func handleVMEvent(e *types.VmEvent) interface{} {
 	}
 }
 
-func handleVMCloneEvent(e *types.VmEvent) interface{} {
+func handleVMCloneEvent(e *types.VmCloneEvent) interface{} {
 	return struct {
 		VMName     string `json:"vm_name"`
 		VMID       string `json:"vm_id"`
@@ -110,15 +110,6 @@ func handleVMCloneEvent(e *types.VmEvent) interface{} {
 	}
 }
 
-func handleVMDeployFailedEvent(e *types.VmEvent) interface{} {
-	return struct {
-		VMName     string `json:"vm_name"`
-		VMID       string `json:"vm_id"`
-	}{
-		VMName:     e.Vm.Name,
-		VMID:       e.Vm.Vm.String(),
-	}
-}
 
 func handleVMPoweredOnEvent(e *types.VmPoweredOnEvent) interface{} {
 	return struct {
@@ -142,6 +133,15 @@ func handleVMPoweredOffEvent(e *types.VmPoweredOffEvent) interface{} {
 
 // Failure Events
 
+func handleVMDeployFailedEvent(e *types.VmDeployFailedEvent) interface{} {
+	return struct {
+		VMName     string `json:"vm_name"`
+		VMID       string `json:"vm_id"`
+	}{
+		VMName:     e.Vm.Name,
+		VMID:       e.Vm.Vm.String(),
+	}
+}
 
 func handleVMFailedToPowerOffEvent(e *types.VmFailedToPowerOffEvent) interface{} {
 	return struct {
@@ -182,15 +182,7 @@ func handleVMFailedToResetEvent(e *types.VmFailedToResetEvent) interface{} {
 	}
 }
 
-func handleVMFailedToSuspendEvent(e *types.VmPoweredOffEvent) interface{} {
-	return struct {
-		VMName     	string `json:"vm_name"`
-		VMID		string `json:"vm_id"`
-	}{
-		VMName:     e.Vm.Name,
-		VMID:       e.Vm.Vm.String(),
-	}
-}
+
 
 func handleVMFailedToShutdownGuestEvent(e *types.VmFailedToShutdownGuestEvent) interface{} {
 	return struct {
@@ -203,6 +195,16 @@ func handleVMFailedToShutdownGuestEvent(e *types.VmFailedToShutdownGuestEvent) i
 }
 
 func handleVMFailedToStandbyGuestEvent(e *types.VmFailedToStandbyGuestEvent) interface{} {
+	return struct {
+		VMName     	string `json:"vm_name"`
+		VMID		string `json:"vm_id"`
+	}{
+		VMName:     e.Vm.Name,
+		VMID:       e.Vm.Vm.String(),
+	}
+}
+
+funtion handleVMFailedToSuspendEvent(e *types.VmFailedToSuspendEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
