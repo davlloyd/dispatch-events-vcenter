@@ -204,7 +204,7 @@ func handleVMFailedToStandbyGuestEvent(e *types.VmFailedToStandbyGuestEvent) int
 	}
 }
 
-funtion handleVMFailedToSuspendEvent(e *types.VmFailedToSuspendEvent) interface{} {
+func handleVMFailedToSuspendEvent(e *types.VmFailedToSuspendEvent) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
