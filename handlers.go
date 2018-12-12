@@ -46,7 +46,7 @@ func processEventMetadata(e types.BaseEvent) interface{} {
 	case *types.VmFailedToSuspendEvent:
 		return handleVMFailedToSuspendEvent(concreteEvent)
 	case *types.VmFailoverFailed:
-		return handleVMEvent(concreteEvent)
+		return handleVMFailoverFailed(concreteEvent)
 	default:
 		return handleUnknownEvent(reflect.TypeOf(e).String())
 	}
@@ -205,6 +205,16 @@ func handleVMFailedToStandbyGuestEvent(e *types.VmFailedToStandbyGuestEvent) int
 }
 
 func handleVMFailedToSuspendEvent(e *types.VmFailedToSuspendEvent) interface{} {
+	return struct {
+		VMName     	string `json:"vm_name"`
+		VMID		string `json:"vm_id"`
+	}{
+		VMName:     e.Vm.Name,
+		VMID:       e.Vm.Vm.String(),
+	}
+}
+
+func handleVMFailoverFailed(e *types.VmFailoverFailed) interface{} {
 	return struct {
 		VMName     	string `json:"vm_name"`
 		VMID		string `json:"vm_id"`
